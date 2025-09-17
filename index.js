@@ -7,12 +7,16 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    backgroundColor: '#f5f5f5',
     webPreferences: {
       preload: path.join(__dirname, 'src/preload.js')
     }
   })
 
-  win.loadFile('src/renderer/index.html')
+  win.loadFile('src/renderer/Pages/LandingPage.html')
+
+win.webContents.openDevTools();
+
   win.setMenuBarVisibility(false);
 }
 
@@ -24,6 +28,7 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
 
 // Re-create a window when the app is activated (macOS behavior)
 app.on('activate', () => {

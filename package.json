@@ -15,5 +15,8 @@
   "devDependencies": {
     "electron": "^38.0.0",
     "electronmon": "^2.0.3"
+  },
+  "dependencies": {
+    "@picocss/pico": "^2.1.1"
   }
 }

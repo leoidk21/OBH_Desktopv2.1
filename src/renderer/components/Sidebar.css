@@ -1,0 +1,153 @@
+html {
+  scroll-behavior: smooth;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, 
+    Ubuntu, Cantarell, "Noto Sans", sans-serif, 
+    "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+}
+
+body, main, section, article, aside {
+    height: 100%;
+    line-height: 1.5;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    font-family: var(--font-family);
+}
+
+aside nav + nav {
+    margin-top: 1rem;
+}
+
+.sidebar {
+    width: 100%;
+    height: 100vh;
+    padding: 1rem;
+    display: flex;
+    min-width: 280px;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #f5f5f5;
+    border-right: 2px solid #e5e5e5;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.logo {
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.his {
+    color: red;
+}
+
+.logo-brand {
+    line-height: 1;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.menu-text {
+    font-size: 1.4rem;
+    padding-left: 0.4rem;
+}
+
+.main-menu,
+.account-menu {
+    padding-left: 0.6rem;
+}
+
+.main-menu li a,
+.account-menu li a {
+    gap: 12px;
+    display: flex;
+    color: #000;
+    font-size: 1.15rem;
+    padding: 1.1rem 1rem;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile {
+    gap: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    margin-bottom: 1rem;
+    background: #e5e5e5;
+}
+
+.divider-1 {
+    margin-bottom: 1rem;
+}
+
+.admin-name {
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.admin-email {
+    font-weight: 500;
+    color: #5c5c5c;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+.sidebar a.active {
+    width: 100%;
+    color: white;
+    min-width: 200px;
+    border-radius: 6px;
+    background-color: #e5e5e5;
+}
