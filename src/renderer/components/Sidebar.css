@@ -1,5 +1,7 @@
 html {
   scroll-behavior: smooth;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 *, *::before, *::after {
   box-sizing: border-box;
@@ -15,11 +17,12 @@ html {
     "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
 }
 
-body, main, section, article, aside {
+body, main, aside {
     height: 100%;
     line-height: 1.5;
     margin: 0 !important;
     padding: 0 !important;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -76,11 +79,6 @@ aside nav + nav {
     padding-left: 0.4rem;
 }
 
-.main-menu,
-.account-menu {
-    padding-left: 0.6rem;
-}
-
 .main-menu li a,
 .account-menu li a {
     gap: 12px;
@@ -94,9 +92,9 @@ aside nav + nav {
 }
 
 ul {
-    list-style: none;
     padding: 0;
-    margin: 0;
+    margin-top: 1rem;
+    list-style: none;
 }
 
 .profile {
@@ -139,15 +137,36 @@ ul {
     object-fit: contain;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-
 .sidebar a.active {
     width: 100%;
-    color: white;
-    min-width: 200px;
+    color: black;
+    min-width: 250px;
     border-radius: 6px;
     background-color: #e5e5e5;
+}
+
+.sidebar a:hover {
+    width: 100%;
+    color: black;
+    min-width: 250px;
+    border-radius: 6px;
+    background-color: #e5e5e5;
+}
+
+.page-content {
+    display: flex;
+}
+
+.content-container {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 1rem 2rem 1rem 2rem;
+    justify-content: space-between;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

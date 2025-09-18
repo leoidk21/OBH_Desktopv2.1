@@ -7,15 +7,19 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
-    backgroundColor: '#f5f5f5',
+    background: '#f5f5f5',
     webPreferences: {
+      contextIsolation: true,
+      nodeIntegration: true,
+      webSecurity: true,
+      enableRemoteModule: false,
       preload: path.join(__dirname, 'src/preload.js')
     }
   })
 
-  win.loadFile('src/renderer/Pages/LandingPage.html')
+  win.loadFile('src/renderer/Pages/Auth/LoginPage.html')
 
-win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   win.setMenuBarVisibility(false);
 }

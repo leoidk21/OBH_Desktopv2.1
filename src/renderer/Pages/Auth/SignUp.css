@@ -28,90 +28,68 @@ body {
 
 .login-form {
     width: 100%;
-    min-width: 450px;
+    margin: 0 auto;
+    min-width: 600px;
+    background: #FFF;
     text-align: center;
-    background: #fff;
+    border-radius: 10px; 
+    padding: 1rem 1.5rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.login {
-    color: #FFF;
-}
-
-.admin-icon i {
-    color: #FFF;
-    font-size: 4rem;
-    margin-bottom: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-icon {
-    display: flex;
-    padding: 1rem;
-    align-items: center;
+    width: 50px;
+    height: 50px;
     margin: 0 auto 1rem;
-    flex-direction: column;
-    background: linear-gradient( #19579C, #102E50);
 }
 
-.form-group-container {
-    padding: 0.5rem 2.7rem 0.5rem 2.7rem;
-} 
+.login {
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #ccc;
+}
+
+.form-grid {
+    gap: 1rem;
+    display: grid;
+    margin-top: 1.5rem;
+    margin-bottom: 0.6rem;
+    grid-template-columns: repeat(2, 1fr);
+}
 
 .form-group {
-    width: 100%;
     display: flex;
-    margin-top: 1rem;
-    border-radius: 4px;
-    background: #fff;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    transition: border-color 0.4s ease, box-shadow 0.3s ease;
+    padding: 0.3rem;
+    text-align: left;
+    flex-direction: column;
 }
 
-.form-group:hover {
-    border-color: #00246c;
-    box-shadow: 0 0 6px rgba(42, 101, 221, 0.5);
+.required {
+    color: red;
+    font-size: 1rem;
 }
 
 .form-group input {
     flex: 1;
-    border: none;
     outline: none;
+    border-radius: 6px;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid #dadada;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus {
-    outline: none;
-    box-shadow: none; /* handled by parent */
+    border-color: #00246c; 
+    box-shadow: 0 0 0 1px rgba(42, 101, 221, 1);
 }
 
-.form-group:focus {
-    border-color: #2A65DD;
-    box-shadow: 0 0 4px rgba(42, 101, 221, 0.5);
-}
-
-/* Eye icon */
-.form-group i {
-    cursor: pointer;
-    font-size: 19px;
-    color: #333446;
-}
-
-.input-field {
+.input-field, label {
     font-family: 'Poppins', sans-serif;
 }
 
-.forgot-password {
-    margin-top: 1rem;
-    margin-bottom: 0.6rem;
-}
-
-.forgot-password-link {
-    color: red; 
-    font-size: 0.95rem;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+label {
+    margin-bottom: 0.3rem;
 }
 
 .submit-btn {
@@ -123,6 +101,7 @@ body {
     font-size: 1.2rem;
     border-radius: 5px;
     padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
     background: #2A65DD;
     font-family: 'Poppins', sans-serif;
 }
