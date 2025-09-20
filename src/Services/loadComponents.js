@@ -35,8 +35,8 @@ const pageConfig = {
     path: '../Pages/ClientsPage.html',
     title: 'Clients'
   },
-  AccountPage: {
-    path: '../Pages/AccountPage.html',
+  AdminAccountPage: {
+    path: '../Pages/Admin/AdminAccountPage.html',
     title: 'Account'
   }
 };
@@ -165,24 +165,25 @@ function loadPageContent(pageName) {
   fetch(page.path)
     .then(response => response.text())
     .then(html => {
-      // Parse the fetched HTML
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
-
-      // Grab the main content only
       const mainContent = doc.querySelector("#content, main, .page-content");
 
-      if (mainContent) {
-        contentContainer.innerHTML = mainContent.innerHTML;
-      } else {
-        contentContainer.innerHTML = html;
-      }
-
+      contentContainer.innerHTML = mainContent ? mainContent.innerHTML : html;
       document.title = page.title;
+
+      // ✅ Run profile loader kapag nasa AdminAccountPage
+      if (pageName === "AdminAccountPage") {
+        console.log("👤 Initializing Admin Profile...");
+        if (typeof loadAdminProfile === "function") {
+          loadAdminProfile();
+        } else {
+          console.warn("⚠️ loadAdminProfile function not found");
+        }
+      }
     })
     .catch(err => {
       console.error(err);
       contentContainer.innerHTML = `<p>Error loading ${page.title}</p>`;
     });
 }
-

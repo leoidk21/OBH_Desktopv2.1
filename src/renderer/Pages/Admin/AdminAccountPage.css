@@ -1,0 +1,112 @@
+.account-container {
+    margin: 25px;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 240, 240, 0.32) 100%);
+}
+
+.account {
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.profile-account-name {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-account-email {
+    color: #777;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-account-role {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(0, 176, 0);
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-card {
+    margin: 25px;
+    border-radius: 15px;
+    padding: 1.2rem 2.5rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 240, 240, 0.32) 100%);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.profile-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.edit-btn {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.edit-btn {
+    gap: 6px;
+    border: none;
+    color: #fff;
+    display: flex;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    align-items: center;
+    background-color: #0b4fad;
+}
+
+.edit-btn:hover {
+    background-color: #083d86;
+}
+
+.profile-content {
+    display: grid;
+    row-gap: 12px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.profile-content label {
+    color: #888;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-content span {
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    -webkit-text-stroke: 0.2px #333;
+}
+
+.profile-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-item.full {
+    grid-column: span 2;
+}
+
+.profile-role {
+    font-size: 16px;
+    color: rgb(0, 176, 0);
+    font-family: 'Poppins', sans-serif;
+}

@@ -4,19 +4,35 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron .",
-    "dev": "electronmon .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run start:server\" \"npm run start:electron\"",
+    "start:server": "node src/backend/server.js",
+    "start:electron": "electron .",
+    "dev": "electronmon ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "electron": "^38.0.0",
     "electronmon": "^2.0.3"
   },
   "dependencies": {
-    "@picocss/pico": "^2.1.1"
-  }
+    "@picocss/pico": "^2.1.1",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoidk21/SampleElectron.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leoidk21/SampleElectron/issues"
+  },
+  "homepage": "https://github.com/leoidk21/SampleElectron#readme"
 }

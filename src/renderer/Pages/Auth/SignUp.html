@@ -6,6 +6,7 @@
     <title>Sign Up Page</title>
     <link rel="stylesheet" href="../Auth/SignUp.css">
     <link rel="stylesheet" href="../../components/Sidebar.css">
+    <script src="../Auth/Auth.js"></script>
 </head>
 <body>
     <main class="admin-container">
@@ -15,13 +16,18 @@
             </div>      
 
             <div class="login-container">
-                <form class="login-form" method="post" action="/signup">
+                <form class="login-form" id="signupForm">
                     <h2 class="login">Register as Admin</h2>
 
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="name">Full Name <span class="required">*</span></label>
-                            <input type="text" id="fullname" placeholder="Enter your full name" class="input-field" required>
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" placeholder="Enter your first name" class="input-field" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" placeholder="Enter your last name" class="input-field" required>
                         </div>
 
                         <div class="form-group">
@@ -30,45 +36,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Password <span class="required">*</span></label>
-                            <input type="password" id="password" placeholder="Create a strong password" class="input-field" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
-                            <input type="password" id="confirmPassword" placeholder="Confirm your password" class="input-field" required>
-                        </div>
-
-                        <div class="form-group">
                             <label for="phone">Phone <span class="required">*</span></label>
                             <input type="tel" id="phone" placeholder="+63 912 345 6789" class="input-field" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="secret">Admin Key <span class="required">*</span></label>
-                              <input 
-                                    class="input-field"
-                                    type="text" 
-                                    id="adminKey" 
-                                    name="adminKey" 
-                                    placeholder="Enter 4-digit key" 
-                                    required 
-                                    inputmode="numeric" 
-                                    pattern="[0-9]{4}" 
-                                    minlength="4" 
-                                    maxlength="4"
-                                >
+                            <label for="password">Password <span class="required">*</span></label>
+                            <input type="password" id="password" placeholder="Create a strong password" class="input-field" required>
                         </div>
                     </div>
+
                     <button type="submit" class="submit-btn">
-                        <a href="../../Pages/LandingPage.html">
-                            Register as Admin Now
-                        </a>
+                        Register as Admin Now
                     </button>
                 </form>
 
                 <div class="create-account">
-                    <p>Already have an account? <a href="../../Pages/LandingPage.html">Login</a></p>
+                    <p>Already have an account? <a href="../../Pages/Auth/LoginPage.html">Login</a></p>
                 </div>
             </div>
 
