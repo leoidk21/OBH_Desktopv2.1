@@ -6,7 +6,7 @@ const router = express.Router();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// 🔐 Middleware: verify token
+// Middleware: verify token
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -24,7 +24,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// ✅ GET /api/admin/me → current logged-in admin
+// GET /api/admin/me → current logged-in admin
 router.get('/me', authenticateToken, async (req, res) => {
   try {
     const { id } = req.user;
@@ -42,9 +42,31 @@ router.get('/me', authenticateToken, async (req, res) => {
 
     res.json(result.rows[0]);
   } catch (err) {
-    console.error("❌ /admin/me error:", err.message);
+    console.error("/admin/me error:", err.message);
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+// EDIT PROFILE
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { first_name, last_name, email, phone } = req.body;
+
+    const result = await pool.query(
+      `UPDATE admins
+       SET first_name = $1, last_name = $2, email = $3, phone = $4
+       WHERE id = $5
+       RETURNING *`,
+      [first_name, last_name, email, phone, id]
+    );
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 
 module.exports = router;

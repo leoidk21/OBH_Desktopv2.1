@@ -1,10 +1,11 @@
 html {
-  scroll-behavior: smooth;
-  overflow-y: hidden;
-  overflow-x: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
+
 *, *::before, *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 * {
@@ -127,46 +128,6 @@ ul {
     flex-direction: column; /* stack name/role above email */
 }
 
-.regular-admin-name {
-    gap: 8px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-
-.admin-name {
-    font-weight: 600;
-    white-space: nowrap;
-    font-family: 'Poppins', sans-serif;
-}
-
-.admin-role {
-    color: rgb(0, 176, 0);
-    flex-shrink: 0;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-}
-
-#profile-role {
-    color: rgb(0, 176, 0);
-    flex-shrink: 0;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
-}
-
-.admin-email { 
-    width: 75%; 
-    ellipsis: 2; 
-    overflow: hidden; 
-    font-weight: 500; 
-    color: #5c5c5c; 
-    white-space: nowrap; 
-    text-overflow: ellipsis; 
-    -webkit-box-orient: vertical; 
-    font-family: 'Poppins', sans-serif; 
-}
-
 .logo img {
     width: 75px;
     height: 75px;
@@ -205,4 +166,16 @@ ul {
     padding: 1rem 2rem 1rem 2rem;
     justify-content: space-between;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.admin-email { 
+    width: 78%;
+    ellipsis: 2; 
+    overflow: hidden; 
+    font-weight: 500; 
+    color: #5c5c5c; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    -webkit-box-orient: vertical; 
+    font-family: 'Poppins', sans-serif; 
 }

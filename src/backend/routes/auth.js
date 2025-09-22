@@ -7,16 +7,16 @@ const router = express.Router();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// 🔹 Helper: generate JWT
+// Helper: generate JWT
 function generateToken(admin) {
   return jwt.sign(
-    { id: admin.id, email: admin.email }, // 👈 id included!
+    { id: admin.id, email: admin.email },
     JWT_SECRET,
     { expiresIn: '1h' }
   );
 }
 
-// ✅ SIGNUP
+// SIGNUP
 router.post('/signup', async (req, res) => {
   try {
     const { firstName, lastName, email, phone, password } = req.body;
@@ -40,7 +40,7 @@ router.post('/signup', async (req, res) => {
 
     res.status(201).json({ token, admin });
   } catch (err) {
-    console.error("❌ Signup error:", err.message);
+    console.error("Signup error:", err.message);
     if (err.code === '23505') {
       res.status(400).json({ error: "Email already exists" });
     } else {
@@ -49,7 +49,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// ✅ LOGIN
+// LOGIN
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: "Email and password required" });
     }
 
-    // 🔍 Find admin
+    // Find admin
     const result = await pool.query(
       `SELECT * FROM admins WHERE email = $1`,
       [email]
@@ -70,16 +70,16 @@ router.post('/login', async (req, res) => {
 
     const admin = result.rows[0];
 
-    // 🔐 Compare password
+    // Compare password
     const validPassword = await bcrypt.compare(password, admin.password_hash);
     if (!validPassword) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // 🔑 Generate token
+    // Generate token
     const token = generateToken(admin);
 
-    // 🧹 Return clean admin object
+    // Return clean admin object
     const safeAdmin = {
       id: admin.id,
       first_name: admin.first_name,
@@ -92,9 +92,48 @@ router.post('/login', async (req, res) => {
     res.json({ token, admin: safeAdmin });
 
   } catch (err) {
-    console.error("❌ Login error:", err.message);
+    console.error("Login error:", err.message);
     res.status(500).json({ error: "Server error" });
   }
 });
+
+document.getElementById("editProfileForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); // prevent page reload
+
+  // Get values from input fields
+  const updatedName = document.getElementById("editName").value;
+  const updatedEmail = document.getElementById("editEmail").value;
+  const updatedPhone = document.getElementById("editPhone").value;
+
+  // Update UI instantly
+  document.getElementById("profile-account-name").textContent = updatedName;
+  document.getElementById("profile-email").textContent = updatedEmail;
+  document.getElementById("profile-phone").textContent = updatedPhone;
+
+  // Send update to backend
+  try {
+    const res = await fetch("/api/admin/updateProfile", {
+      method: "PUT", // or POST
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: updatedName,
+        email: updatedEmail,
+        phone: updatedPhone,
+      }),
+    });
+
+    const result = await res.json();
+    console.log("✅ Profile updated:", result);
+
+    // Close modal
+    document.getElementById("editProfileModal").classList.remove("show");
+  } catch (err) {
+    console.error("❌ Error saving profile:", err);
+    alert("Failed to save changes!");
+  }
+});
+
 
 module.exports = router;
