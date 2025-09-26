@@ -13,9 +13,25 @@ const pool = require('./db');
 
 const app = express();
 
+// Request logger (MUST be before routes to log API calls)
+app.use((req, res, next) => {
+  console.log(`📝 ${req.method} ${req.url}`);
+  if (req.body && Object.keys(req.body).length > 0) {
+    console.log("Request body:", req.body);
+  }
+  next();
+});
+
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Debug middleware for API routes
+app.use('/api', (req, res, next) => {
+  console.log(`🔥 API Request: ${req.method} ${req.originalUrl}`);
+  console.log("Headers:", req.headers);
+  next();
+});
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -28,12 +44,6 @@ app.get('/', (req, res) => {
 
 // Serve static files (must be last)
 app.use(express.static(path.join(__dirname, '../')));
-
-// Request logger (optional)
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
 
 // Start server
 const PORT = process.env.PORT || 3000;

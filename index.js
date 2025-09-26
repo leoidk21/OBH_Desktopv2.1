@@ -1,6 +1,11 @@
 const { app, BrowserWindow, Menu } = require('electron')
 const path = require('path')
 
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+  awaitWriteFinish: true,
+});
+
 let win
 
 const createWindow = () => {
@@ -21,11 +26,6 @@ const createWindow = () => {
   path.join(__dirname, 'src', 'renderer', 'Pages', 'Auth', 'LoginPage.html')
 )
 
-  
-  // Remove this line to prevent DevTools from opening automatically
-  // win.webContents.openDevTools();
-
-  // Set up context menu for right-click inspect
   win.webContents.on('context-menu', (event, params) => {
     const menu = Menu.buildFromTemplate([
       {

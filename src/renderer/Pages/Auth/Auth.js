@@ -1,4 +1,3 @@
-  // Auth.js //
   const API_BASE = "http://localhost:3000/api";
 
   console.log("Auth.js is loaded!");
@@ -230,5 +229,7 @@
 
     window.location.href = "../../Pages/Auth/LoginPage.html";
   }
+
+
 
   

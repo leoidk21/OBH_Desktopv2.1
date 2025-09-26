@@ -2,6 +2,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 const pool = require('../db');
 const router = express.Router();
 
@@ -16,7 +17,7 @@ function generateToken(admin) {
   );
 }
 
-// SIGNUP
+// --- SIGNUP ---
 router.post('/signup', async (req, res) => {
   try {
     const { firstName, lastName, email, phone, password } = req.body;
@@ -49,7 +50,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// LOGIN
+// --- LOGIN ---
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -58,7 +59,6 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: "Email and password required" });
     }
 
-    // Find admin
     const result = await pool.query(
       `SELECT * FROM admins WHERE email = $1`,
       [email]
@@ -69,17 +69,13 @@ router.post('/login', async (req, res) => {
     }
 
     const admin = result.rows[0];
-
-    // Compare password
     const validPassword = await bcrypt.compare(password, admin.password_hash);
     if (!validPassword) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Generate token
     const token = generateToken(admin);
 
-    // Return clean admin object
     const safeAdmin = {
       id: admin.id,
       first_name: admin.first_name,
@@ -90,50 +86,115 @@ router.post('/login', async (req, res) => {
     };
 
     res.json({ token, admin: safeAdmin });
-
   } catch (err) {
     console.error("Login error:", err.message);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-document.getElementById("editProfileForm").addEventListener("submit", async (e) => {
-  e.preventDefault(); // prevent page reload
+// --- Nodemailer Transporter ---
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
 
-  // Get values from input fields
-  const updatedName = document.getElementById("editName").value;
-  const updatedEmail = document.getElementById("editEmail").value;
-  const updatedPhone = document.getElementById("editPhone").value;
+  debug: true,
+  logger: true
+});
 
-  // Update UI instantly
-  document.getElementById("profile-account-name").textContent = updatedName;
-  document.getElementById("profile-email").textContent = updatedEmail;
-  document.getElementById("profile-phone").textContent = updatedPhone;
-
-  // Send update to backend
+// --- FORGOT PASSWORD ---
+router.post("/forgot-password", async (req, res) => {
   try {
-    const res = await fetch("/api/admin/updateProfile", {
-      method: "PUT", // or POST
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: updatedName,
-        email: updatedEmail,
-        phone: updatedPhone,
-      }),
+    const { email } = req.body;
+
+    // Check if admin exists
+    const result = await pool.query("SELECT id FROM admins WHERE email=$1", [email]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "No account with that email." });
+    }
+
+    // Generate 4-digit code
+    const code = Math.floor(1000 + Math.random() * 9000).toString();
+    const expires = new Date(Date.now() + 15 * 60 * 1000); // 15 mins
+
+    // Save to DB
+    await pool.query(
+      `UPDATE admins SET reset_token=$1, reset_expires=$2 WHERE email=$3`,
+      [code, expires, email]
+    );
+
+    // Send email with code
+    await transporter.sendMail({
+      from: `"OBH Support" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Your Password Reset Code",
+      text: `Your verification code is: ${code}`,
+      html: `<p>Your verification code is: <b>${code}</b></p>`,
     });
 
-    const result = await res.json();
-    console.log("✅ Profile updated:", result);
-
-    // Close modal
-    document.getElementById("editProfileModal").classList.remove("show");
+    res.json({ message: "Verification code sent to your email." });
   } catch (err) {
-    console.error("❌ Error saving profile:", err);
-    alert("Failed to save changes!");
+    console.error("Forgot password error:", err.message);
+    res.status(500).json({ message: "Server error." });
   }
 });
 
+// --- VERIFY CODE ---
+router.post('/verify-code', async (req, res) => {
+  const { email, code } = req.body;
+
+  try {
+    const result = await pool.query(
+      "SELECT reset_token, reset_expires FROM admins WHERE email=$1",
+      [email]
+    );
+    if (result.rows.length === 0) return res.status(404).json({ error: "User not found" });
+
+    const user = result.rows[0];
+    if (user.reset_token !== code) return res.status(400).json({ error: "Invalid code" });
+    if (new Date(user.reset_expires) < new Date()) {
+      return res.status(400).json({ error: "Code expired" });
+    }
+
+    res.json({ message: "Code verified" });
+  } catch (err) {
+    console.error("Verify code error:", err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// --- RESET PASSWORD ---
+router.post('/reset-password', async (req, res) => {
+  const { email, code, newPassword } = req.body;
+
+  try {
+    const result = await pool.query(
+      "SELECT reset_token, reset_expires FROM admins WHERE email=$1",
+      [email]
+    );
+    if (result.rows.length === 0) return res.status(404).json({ error: "User not found" });
+
+    const user = result.rows[0];
+    if (user.reset_token !== code) return res.status(400).json({ error: "Invalid code" });
+    if (new Date(user.reset_expires) < new Date()) {
+      return res.status(400).json({ error: "Code expired" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(newPassword, salt);
+
+    await pool.query(
+      "UPDATE admins SET password_hash=$1, reset_token=NULL, reset_expires=NULL WHERE email=$2",
+      [hash, email]
+    );
+
+    res.json({ message: "Password reset successful" });
+  } catch (err) {
+    console.error("Reset password error:", err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 module.exports = router;

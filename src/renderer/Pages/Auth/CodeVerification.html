@@ -24,26 +24,24 @@
                         </div>
                         
                         <div class="form-group-container">
-                            <div class="form-group">
-                                <input 
-                                    class="input-field"
-                                    type="text" 
-                                    id="verificationCode" 
-                                    name="verificationCode" 
-                                    placeholder="Enter the 4-digit code" 
-                                    required 
-                                    inputmode="numeric" 
-                                    pattern="[0-9]{4}" 
-                                    minlength="4" 
-                                    maxlength="4"
-                                >
-                            </div>
-                          
-                            <button type="submit" class="submit-btn">
-                              <a href="../Auth/ResetPassword.html">
-                                Verify Code
-                              </a>
-                            </button>
+                            <form id="verifyForm">
+                                <div class="form-group">
+                                    <input 
+                                        class="input-field"
+                                        type="text" 
+                                        id="verificationCode" 
+                                        name="verificationCode" 
+                                        placeholder="Enter the 4-digit code" 
+                                        required 
+                                        inputmode="numeric" 
+                                        pattern="[0-9]{4}" 
+                                        minlength="4" 
+                                        maxlength="4"
+                                    >
+                                </div>
+                            
+                                <button type="submit" class="submit-btn">Verify Code</button>
+                            </form>
                         </div>
                     </div>
 
@@ -53,6 +51,27 @@
                 </div>
             </div>
         </main>
-        <script src="../Auth/Auth.js"></script>
+        <script>
+            document.getElementById("verifyForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = localStorage.getItem("resetEmail");
+            const code = document.getElementById("verificationCode").value;
+
+            const res = await fetch("http://localhost:3000/api/auth/verify-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, code })
+            });
+
+            const data = await res.json();
+                if (res.ok) {
+                    alert("Code verified!");
+                    localStorage.setItem("resetCode", code);
+                    window.location.href = "../Auth/ResetPassword.html";
+                } else {
+                    alert(data.error || "Invalid code");
+                }
+            });
+        </script>
     </body>
 </html>
