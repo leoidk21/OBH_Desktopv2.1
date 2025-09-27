@@ -229,7 +229,3 @@
 
     window.location.href = "../../Pages/Auth/LoginPage.html";
   }
-
-
-
-  
