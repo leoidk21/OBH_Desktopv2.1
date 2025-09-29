@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing Page</title>
-  <link rel="stylesheet" href="../Styles/LandingPage.css">
-  <script defer src="../../Services/loadComponents.js"></script>
 </head>
 <body data-page="GuestPage">
   <main class="container">
@@ -27,6 +25,76 @@
         </svg>
       </div>
     </div>
+
+    <section class="guest-content">
+      <h1>150 number of guests</h1>
+      <div class="cards">
+        <div class="card going">
+          <h2>91</h2>
+          <p>Going</p>
+        </div>
+        <div class="card pending">
+          <h2>19</h2>
+          <p>Pending</p>
+        </div>
+        <div class="card declined">
+          <h2>40</h2>
+          <p>Declined</p>
+        </div>
+      </div>
+      <div class="clients-upper">
+        <div class="search-input">
+          <input 
+            type="search" 
+            name="search" 
+            id="search"
+            placeholder="search by guest lists"
+          >
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+            </button>
+        </div>
+
+
+        <div class="top-bar">
+          <button class="dropdown">Client Lists ▼</button>
+        </div>
+      </div>  
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Guest Name</th>
+              <th>Side & Relationship</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Todd Chavez</td>
+              <td>Groom’s Family</td>
+              <td>Going</td>
+            </tr>
+            <tr>
+              <td>Todd Chavez</td>
+              <td>Bride’s Friend</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td>Todd Chavez</td>
+              <td>Groom’s Friend</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td>Todd Chavez</td>
+              <td>Groom’s Friend</td>
+              <td>Going</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
 </body>
 </html>

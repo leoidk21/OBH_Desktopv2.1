@@ -3,8 +3,6 @@
   console.log("Auth.js is loaded!");
 
   document.addEventListener("DOMContentLoaded", () => {
-    console.log("Auth.js loaded, current page:", window.location.pathname);
-
     function showError(formId, message, focusId, type = "error") {
       const errorBox = document.querySelector(`#${formId} .errorBox`);
       if (!errorBox) return;
@@ -175,7 +173,6 @@
         return res.json();
       })
       .then((data) => {
-        console.log("API profile data:", data);
         updateProfileElements(data);
         localStorage.setItem("adminData", JSON.stringify(data));
       })

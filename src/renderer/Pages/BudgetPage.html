@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing Page</title>
-  <link rel="stylesheet" href="../Styles/LandingPage.css">
-  <script defer src="../../Services/loadComponents.js"></script>
 </head>
 <body data-page="BudgetPage">
   <main class="container">
@@ -27,6 +25,79 @@
         </svg>
       </div>
     </div>
+
+    <section class="budget-content">
+      <div class="budget-header">
+        <div class="upper">
+          <div class="top-bar">
+            <button class="dropdown">Client List ▼</button>
+          </div>
+          <h1>Partner & Partner Wedding</h1>
+        </div>
+        
+        <div class="budget-container">
+          <h2 class="expenses-title">Expenses Breakdown</h2>
+          <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Payment Status</th>
+                <th>Proof of payment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Venue</td>
+                <td>₱ 50,000</td>
+                <td><span class="reciept-paid">Pending</span></td>
+                <td><span class="status view-receipt">View Receipt</span></td>
+              </tr>
+              <tr>
+                <td>Reception</td>
+                <td>₱ 20,000</td>
+                <td><span class="reciept-pending">Pending</span></td>
+                <td><span class="status send-reminder">Send Reminder</span></td>
+              </tr>
+              <tr>
+                <td>Attire</td>
+                <td>₱ 40,000</td>
+                <td><span class="reciept-paid">Pending</span></td>
+                <td><span class="status view-receipt">View Receipt</span></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <div class="budget-container">
+          <h2 class="coordinators-title">Coordinators Fee</h2>
+          <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Event Booked</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Payment Status</th>
+                <th>Proof of payment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Grand Wedding</td>
+                <td>₱ 40,000</td>
+                <td>2025 - 06 - 20</td>
+                <td><span class="reciept-pending">Pending</span></td>
+                <td><span class="status view-receipt">View Receipt</span></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </body>
 </html>

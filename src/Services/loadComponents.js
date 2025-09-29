@@ -44,6 +44,9 @@ const pageConfig = {
 // Dynamically load components
 document.addEventListener("DOMContentLoaded", () => {
   loadSidebar();
+
+  const lastPage = localStorage.getItem("lastPage") || "LandingPage";
+  navigateToPage(lastPage);
 });
 
 async function loadSidebar() {
@@ -123,7 +126,8 @@ function smoothScrollToAnchor(anchorId) {
 function navigateToPage(pageName) {
   console.log('Navigating to:', pageName);
   
-  // Remove active class from all links
+  localStorage.setItem("lastPage", pageName);
+  
   document.querySelectorAll('.sidebar a').forEach(link => {
     link.classList.remove('active');
   });

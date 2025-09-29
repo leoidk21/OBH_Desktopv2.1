@@ -1,0 +1,46 @@
+.budget-content {
+    margin: 2rem;
+}
+
+.expenses-title {
+    margin-bottom: 1rem;
+}
+
+.coordinators-title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.status {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.validated {
+    color: #fff;
+    background: #10B96A;
+}
+
+.view-receipt {
+    color: #fff;
+    background: #f05454;
+}
+
+.send-reminder {
+    color: #fff;
+    background: #2A65DD;
+}
+
+.reciept-pending {
+    color: #f05454;
+    font-weight: 600;
+}
+
+.reciept-paid {
+    color: #10B96A;
+    font-weight: 600;
+}

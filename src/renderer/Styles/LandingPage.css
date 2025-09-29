@@ -158,12 +158,11 @@ td {
     color: #fff;
 }
 
-.reviewed {
+.validated {
     background: #10B96A;
     color: #fff;
 }
 
-/* Review button */
 .btn-view {
     background: #0d6efd;
     color: #fff;

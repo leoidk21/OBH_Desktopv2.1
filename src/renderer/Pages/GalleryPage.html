@@ -4,9 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page</title>
-  <link rel="stylesheet" href="../Styles/LandingPage.css">
-  <script defer src="../../Services/loadComponents.js"></script>
+  <title>Gallery Page</title>
 </head>
 <body data-page="GalleryPage">
   <main class="container">
@@ -27,6 +25,33 @@
         </svg>
       </div>
     </div>
+
+    <section class="gallery-content">
+        <h1 classs="gallery-title">Manage and Share Event Memories</h1>
+          <p class="gallery-description">
+            Upload photos and videos from the events—instantly sync them 
+            to the mobile app for guests to relive the experience anytime.
+          </p>
+
+          <div class="upload-container">
+            <!-- Upload box -->
+            <label class="upload-box">
+              <input type="file" id="fileInput" multiple accept="image/*,video/*">
+              <div class="upload-icon"></div>
+              <div class="upload-text">Upload</div>
+              <small>Drag and drop or browse files</small>
+            </label>
+
+            <!-- Preview section -->
+            <div class="preview-section">
+              <div class="preview-header">No files selected</div>
+              <div class="preview-list" id="previewList"></div>
+              <div class="total-size" id="totalSize"></div>
+              <input type="text" class="client-input" placeholder="Event or client name">
+              <button class="send-btn">Send to client</button>
+            </div>
+          </div>
+    </section>
   </main>
 </body>
 </html>

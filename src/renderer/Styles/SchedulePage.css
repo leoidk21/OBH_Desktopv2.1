@@ -4,44 +4,44 @@
 
 .schedule-header {
     display: flex;
-    padding: 20px 0;
-    margin-bottom: 30px;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
     border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 30px;
 }
 
 .header-left {
-    gap: 10px;
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .calendar-icon {
     width: 20px;
     height: 20px;
+    border: 2px solid #333;
     border-radius: 3px;
     position: relative;
-    border: 2px solid #333;
 }
 
 .calendar-icon::before {
+    content: '';
+    position: absolute;
     top: -4px;
     left: 2px;
     right: 2px;
     height: 2px;
-    content: '';
-    position: absolute;
     background-color: #333;
 }
 
 .calendar-icon::after {
+    content: '';
+    position: absolute;
     top: 4px;
     left: 3px;
     right: 3px;
     height: 1px;
-    content: '';
-    position: absolute;
     background-color: #333;
 }
 
@@ -51,12 +51,12 @@
 }
 
 .client-dropdown {
-    gap: 5px;
     display: flex;
-    color: #666;
-    font-size: 14px;
-    cursor: pointer;
     align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
 }
 
 .date-title {
@@ -66,11 +66,11 @@
 }
 
 .main-content {
-    gap: 40px;
     display: flex;
+    gap: 40px;
 }
 
-.sidebar {
+.main-sidebar {
     width: 300px;
     flex-shrink: 0;
 }
@@ -80,33 +80,33 @@
 }
 
 .calendar-header {
-    color: #333;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 15px;
+    color: #333;
 }
 
 .month-nav {
     display: flex;
-    font-size: 14px;
-    font-weight: 500;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .nav-arrow {
-    color: #666;
     cursor: pointer;
+    color: #666;
     font-size: 16px;
 }
 
 .calendar-grid {
-    gap: 5px;
     display: grid;
-    font-size: 12px;
-    text-align: center;
     grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+    font-size: 12px;
 }
 
 .calendar-header-cell {
@@ -116,8 +116,8 @@
 }
 
 .calendar-cell {
-    cursor: pointer;
     padding: 8px 4px;
+    cursor: pointer;
     border-radius: 3px;
     transition: background-color 0.2s;
 }
@@ -127,13 +127,54 @@
 }
 
 .calendar-cell.today {
+    background-color: #ff6b6b;
     color: white;
     font-weight: 500;
-    background-color: #ff6b6b;
 }
 
 .calendar-cell.other-month {
     color: #ccc;
+}
+
+.calendar-cell.actual-today {
+    background-color: #74b9ff;
+    color: white;
+    font-weight: 500;
+}
+
+.calendar-cell:not(.other-month):hover {
+    background-color: #e8f4fd;
+    transform: scale(1.05);
+}
+
+.nav-arrow {
+    cursor: pointer;
+    color: #666;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.nav-arrow:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.no-events {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.event-card.meeting {
+    background-color: #e8f4fd;
+    border-left-color: #74b9ff;
+}
+
+.event-card.presentation {
+    background-color: #fde8e8;
+    border-left-color: #ff7675;
 }
 
 .schedule-section {
@@ -141,13 +182,13 @@
 }
 
 .section-headers {
-    gap: 20px;
-    color: #666;
     display: grid;
+    grid-template-columns: 120px 120px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: 20px;
-    grid-template-columns: 120px 120px 1fr;
+    color: #666;
 }
 
 .timeline {
@@ -156,15 +197,16 @@
 
 .time-slot {
     display: grid;
+    grid-template-columns: 120px 120px 1fr;
+    gap: 20px;
+    align-items: flex-start;
     min-height: 60px;
     position: relative;
-    align-items: flex-start;
-    grid-template-columns: 120px 120px 1fr;
 }
 
 .time-label {
-    color: #666;
     font-size: 14px;
+    color: #666;
     padding-top: 5px;
 }
 
@@ -175,35 +217,35 @@
 }
 
 .event-card {
-    padding: 15px;
-    position: relative;
-    border-radius: 6px;
-    margin-bottom: 15px;
     background-color: #ffeaa7;
     border-left: 4px solid #fdcb6e;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    position: relative;
 }
 
 .event-title {
     font-size: 16px;
     font-weight: 600;
-    color: #2d3436;
     margin-bottom: 5px;
+    color: #2d3436;
 }
 
 .event-description {
     font-size: 13px;
-    line-height: 1.4;
     color: #636e72;
+    line-height: 1.4;
 }
 
 .event-duration {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 12px;
+    color: #636e72;
     margin-top: 10px;
     padding-top: 8px;
-    color: #636e72;
-    align-items: center;
-    justify-content: space-between;
     border-top: 1px solid #f1c40f20;
 }
 
@@ -232,27 +274,27 @@
 }
 
 .timeline-line {
+    position: absolute;
+    left: 60px;
     top: 0;
     bottom: 0;
     width: 2px;
-    z-index: 0;
-    left: 100px;
-    position: absolute;
     background-color: #e5e5e5;
+    z-index: 0;
 }
 
-/* .timeline-dot {
-    top: 10px;
+.timeline-dot {
+    position: absolute;
     left: 54px;
-    z-index: 1;
+    top: 10px;
     width: 14px;
     height: 14px;
-    border-radius: 50%;
-    position: absolute;
-    border: 3px solid white;
     background-color: #fdcb6e;
+    border: 3px solid white;
+    border-radius: 50%;
+    z-index: 1;
     box-shadow: 0 0 0 2px #e5e5e5;
-} */
+}
 
 @media (max-width: 768px) {
     .main-content {
@@ -265,7 +307,7 @@
     
     .section-headers,
     .time-slot {
-        gap: 15px;
         grid-template-columns: 80px 80px 1fr;
+        gap: 15px;
     }
 }
