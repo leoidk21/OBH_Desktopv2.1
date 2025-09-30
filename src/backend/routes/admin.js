@@ -1,28 +1,10 @@
 // src/backend/routes/admin.js
+// const jwt = require('jsonwebtoken');
+// const JWT_SECRET = process.env.JWT_SECRET;
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const pool = require('../db');
+const { authenticateToken, requireAdmin, auditLog, logAction } = require('./middleware/auth');
 const router = express.Router();
-
-const JWT_SECRET = process.env.JWT_SECRET;
-
-// Middleware: verify token
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
-  }
-
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ error: 'Invalid or expired token' });
-    }
-    req.user = decoded; // decoded payload (must contain id!)
-    next();
-  });
-}
 
 // GET /api/admin/me → current logged-in admin
 router.get('/me', authenticateToken, async (req, res) => {
@@ -72,4 +54,98 @@ router.put("/me", authenticateToken, async (req, res) => {
     }
 });
 
+// Example: Event CRUD endpoints with audit logging
+// CREATE EVENT
+router.post('/events', authenticateToken, requireAdmin, auditLog('Events', 'CREATE_EVENT'), async (req, res) => {
+  try {
+    const { client_name, event_type, date, status } = req.body;
+    
+    // Your existing event creation logic here
+    // const result = await pool.query(...);
+    
+    res.json({ success: true, message: "Event created" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// UPDATE EVENT
+router.put('/events/:id', authenticateToken, requireAdmin, auditLog('Events', 'UPDATE_EVENT'), async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Your existing event update logic here
+    
+    res.json({ success: true, message: "Event updated" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// DELETE EVENT
+router.delete('/events/:id', authenticateToken, requireAdmin, auditLog('Events', 'DELETE_EVENT'), async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Your existing event delete logic here
+    
+    res.json({ success: true, message: "Event deleted" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Similar patterns for Gallery, Notifications, QR Code, etc.
+// Example: Gallery upload
+router.post('/gallery', authenticateToken, requireAdmin, auditLog('Gallery', 'UPLOAD_IMAGE'), async (req, res) => {
+  try {
+    // Your gallery upload logic
+    res.json({ success: true, message: "Image uploaded" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Example: Send notification
+router.post('/notifications', authenticateToken, requireAdmin, auditLog('Notifications', 'SEND_NOTIFICATION'), async (req, res) => {
+  try {
+    // Your notification sending logic
+    res.json({ success: true, message: "Notification sent" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Example: Generate QR Code
+router.post('/qr-code', authenticateToken, requireAdmin, auditLog('QR Code', 'GENERATE_QR'), async (req, res) => {
+  try {
+    // Your QR code generation logic
+    res.json({ success: true, message: "QR code generated" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 module.exports = router;
+
+/* Middleware: verify token
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ error: 'No token provided' });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: 'Invalid or expired token' });
+    }
+    req.user = decoded;
+    next();
+  });
+} */

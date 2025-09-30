@@ -11,9 +11,13 @@ const JWT_SECRET = process.env.JWT_SECRET;
 // Helper: generate JWT
 function generateToken(admin) {
   return jwt.sign(
-    { id: admin.id, email: admin.email },
+    { 
+      id: admin.id, 
+      email: admin.email ,
+      role: admin.role
+    },
     JWT_SECRET,
-    { expiresIn: '1h' }
+    { expiresIn: '12h' }
   );
 }
 
@@ -39,6 +43,7 @@ router.post('/signup', async (req, res) => {
     const admin = result.rows[0];
     const token = generateToken(admin);
 
+    // Default role is 'admin' (set in DB default)
     res.status(201).json({ token, admin });
   } catch (err) {
     console.error("Signup error:", err.message);

@@ -116,8 +116,15 @@
             showError("loginForm", "Login successful!", null, "success");
             
             setTimeout(() => {
-              window.location.href = "../../Pages/LandingPage.html";
+              if (data.admin.role === "super_admin") {
+                window.location.href = "../../Pages/SuperAdmin.html";
+              } else if (data.admin.role === "admin") {
+                window.location.href = "../../Pages/LandingPage.html";
+              } else {
+                showError("loginForm", "Unauthorized role", null);
+              }
             }, 1000);
+
           } else {
             showError("loginForm", data.error || "Login failed", "email");
           }
@@ -224,5 +231,5 @@
       alert(message);
     }
 
-    window.location.href = "../../Pages/Auth/LoginPage.html";
+    window.location.href = "/renderer/Pages/Auth/LoginPage.html";
   }

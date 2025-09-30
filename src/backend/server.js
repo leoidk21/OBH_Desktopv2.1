@@ -36,6 +36,8 @@ app.use('/api', (req, res, next) => {
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+const superAdminRoutes = require('./routes/superAdmin');
+app.use('/api/superadmin', superAdminRoutes);
 
 // Test endpoint
 app.get('/', (req, res) => {
