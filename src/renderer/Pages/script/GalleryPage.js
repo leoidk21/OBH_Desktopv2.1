@@ -1,6 +1,5 @@
 console.log("GalleryPage.js is loaded!");
 
-// MOVE THE CLASS TO THE TOP - BEFORE THE INITIALIZATION CODE
 class GalleryHandler {
     constructor() {
         console.log("Gallery handler initialized");

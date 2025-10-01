@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../Styles/LandingPage.css">
   <link rel="stylesheet" href="../Styles/EventPage.css">
@@ -45,9 +48,9 @@
                 <path d="M5.1438 22.7931C8.28935 22.7931 11.4045 22.7931 14.5412 22.7931C14.5412 25.3871 14.5412 27.9693 14.5412 30.575C11.4163 30.575 8.28837 30.575 5.1438 30.575C5.1438 27.985 5.1438 25.4028 5.1438 22.7931Z" fill="white"/>
               </svg>
             </div>
-            <span id="events-count">0</span>
+            <span id="events-count">6</span>
           </div>
-          <p class="event-title">Total Events</p>
+          <h4 class="event-title">Total Events</h4>
         </div>
         
         <div class="upcoming-events">
@@ -59,9 +62,9 @@
                 <path d="M25.2781 24.5378L17.6687 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <span id="events-count">0</span>
+            <span id="events-count">3</span>
           </div>
-          <p class="event-title">Upcoming Events</p>
+          <h4 class="event-title">Upcoming Events</h4>
         </div>
 
         <div class="client-request">
@@ -69,9 +72,9 @@
             <div class="wrapper-pending">
               <i class="fas fa-hourglass-half"></i>
             </div>
-            <p id="events-count">0</p>
+            <p id="events-count">1</p>
           </div>
-          <p class="event-title">Pending</p>
+          <h4 class="event-title">Approved</h4>
         </div>
 
         <div class="client-request">
@@ -79,9 +82,9 @@
             <div class="wrapping-approved">
               <i class="fas fa-check-circle"></i>
             </div>
-            <p id="events-count">0</p>
+            <p id="events-count">2</p>
           </div>
-          <p class="event-title">Approved</p>
+          <h4 class="event-title">Pending</h4>
         </div>
       </section>
 
@@ -94,37 +97,37 @@
         </div>  
 
         <div class="table-container">
-          <table>
-            <thead>
+          <table class="table">
+            <thead class="table-header">
               <tr>
-                <th>Clients Name</th>
-                <th>Event Type</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th class="table-title">Clients Name</th>
+                <th class="table-title">Event Type</th>
+                <th class="table-title">Date</th>
+                <th class="table-title">Status</th>
+                <th class="table-title">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Todd Chavez</td>
+                <td>1. Todd Chavez</td>
                 <td>Intimate Wedding</td>
                 <td>April 15, 2025</td>
-                <td><span class="status pending">Pending</span></td>
-                <td><button class="btn-view">View</button></td>
+                <td><span class="status status-pending">Pending</span></td>
+                <td><button class="view-btn view-requested-modal">View</button></td>
               </tr>
               <tr>
-                <td>Todd Chavez</td>
+                <td>2. Todd Chavez</td>
                 <td>Debut</td>
                 <td>December 08, 2025</td>
-                <td><span class="status reviewed">Approved</span></td>
-                <td><button class="btn-view">View</button></td>
+                <td><span class="status status-reviewed">Approved</span></td>
+                <td><button class="view-btn view-requested-modal">View</button></td>
               </tr>
               <tr>
-                <td>Todd Chavez</td>
+                <td>3. Todd Chavez</td>
                 <td>Grand Wedding</td>
                 <td>February 11, 2025</td>
-                <td><span class="status pending">Pending</span></td>
-                <td><button class="btn-view">View</button></td>
+                <td><span class="status status-pending">Pending</span></td>
+                <td><button class="view-btn view-requested-modal">View</button></td>
               </tr>
             </tbody>
           </table>
@@ -140,7 +143,7 @@
         </div>  
 
         <div class="table-container">
-          <table>
+          <table class="table">
             <thead>
               <tr>
                 <th>Clients Name</th>
@@ -152,36 +155,62 @@
             </thead>
             <tbody>
               <tr>
-                <td>Todd Chavez</td>
+                <td>1. Todd Chavez</td>
                 <td>Intimate Wedding</td>
                 <td>April 15, 2025</td>
-                <td><span class="status pending">Pending</span></td>
-                <td><button class="btn-view">View</button></td>
+                <td><span class="status status-approved">Completed</span></td>
+                <td><button class="view-btn">View</button></td>
               </tr>
               <tr>
-                <td>Todd Chavez</td>
+                <td>2. Todd Chavez</td>
                 <td>Debut</td>
                 <td>December 08, 2025</td>
-                <td><span class="status reviewed">Approved</span></td>
-                <td><button class="btn-view">View</button></td>
+                <td><span class="status status-approved">Completed</span></td>
+                <td><button class="view-btn">View</button></td>
               </tr>
               <tr>
-                <td>Todd Chavez</td>
+                <td>3. Todd Chavez</td>
                 <td>Grand Wedding</td>
                 <td>February 11, 2025</td>
-                <td><span class="status pending">Pending</span></td>
-                <td><button class="btn-view">View</button></td>
+                <td><span class="status status-approved">Completed</span></td>
+                <td><button class="view-btn">View</button></td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
-
     </div>
   </main>
+
+  <div class="modal-container" id="event-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close-modal">&times;</span>
+          <h3>Event Details</h3>
+        </div>
+        <div class="modal-body">
+          <p>Client Name: <span id="event-name">Todd Chavez</span></p>
+          <p>Email Address: <span id="event-email">toddchavez@gmail.com	</span></p>
+          <p>Event Type: <span id="event-type">Grand Wedding</span></p>
+          <p>Date: <span id="event-date">October 19, 2026</span></p>
+          <p>Time: <span id="event-time">11:00 AM</span></p>
+          <p>Expected Guests: <span id="event-guests">50</span></p>
+          <p>Venue: <span id="event-venue">Amelia's Event Garden Place</span></p>
+          <p>Event Status: <span id="event-status">Pending</span></p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="approve">Approve</button>
+          <button class="reject">Reject</button>
+        </div>
+      </div>
+  </div>
+  
   <script src="../../Services/loadComponents.js"></script>
   <script src="../Pages/Auth/Auth.js"></script>
   <script src="../Pages/script/Schedule.js"></script>
-  <script src="../Pages/script/GalleryPage.js"></script>
+  <script src="../Pages/Admin/EditAdminAcc.js"></script>
+  <script src="../Pages/script/LandingPage.js"></script>
+  <script src="../Pages/script/BudgetPage.js"></script>
 </body>
 </html>

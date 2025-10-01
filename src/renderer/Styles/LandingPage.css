@@ -21,14 +21,11 @@
 .upcoming-events,
 .client-request {
     width: 50%;
-    padding: 1rem 2rem 1rem 2rem;
     border-radius: 10px;
     background-color: white;
+    padding: 1rem 2rem 1rem 2rem;
+    border-top: 4px solid #DABFAE;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.event-title {
-    font-size: 1.5rem;
 }
 
 #events-count {
@@ -55,7 +52,7 @@
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    background-color: #112C7C;
+    background: linear-gradient(135deg, #007bff, #0056d2);
 }
 
 .wrapper-pending {
@@ -66,7 +63,7 @@
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    background-color: #f05454;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
 .wrapping-approved {
@@ -77,7 +74,7 @@
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    background-color: #10B96A;
+    background: linear-gradient(135deg, #4caf50, #45a049);
 }
 
 .fas {
@@ -88,6 +85,10 @@
 
 .wrapper2 {
     margin-top: 0.5rem;
+}
+
+.event-title {
+    font-size: 1.2rem !important;
 }
 
 .pending-count,
@@ -144,6 +145,10 @@ td {
     color: #333;
 }
 
+.table tbody tr:hover {
+  background: #f1f1f1;
+}
+
 /* Status badges */
 .status {
     padding: 6px 12px;
@@ -153,29 +158,31 @@ td {
     display: inline-block;
 }
 
-.pending {
-    background: #f05454;
-    color: #fff;
+.status-pending {
+    color: #FFF;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
-.reviewed {
-    background: #10B96A;
-    color: #fff;
+.status-reviewed,
+.status-approved {
+    color: #FFF;
+    background: linear-gradient(135deg, #4caf50, #45a049);
 }
 
-.btn-view {
-    background: #0d6efd;
-    color: #fff;
+.view-btn{
+    color: #FFF;
     border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
     cursor: pointer;
     font-size: 13px;
     font-weight: 500;
+    padding: 6px 15px;
+    border-radius: 6px;
     transition: background 0.2s;
+    background: linear-gradient(135deg, #007bff, #0056d2);
 }
 
 .btn-view:hover {
+    opacity: 0.9;
     background: #084298;
 }
 
@@ -187,14 +194,14 @@ td {
 }
 
 .dropdown {
-    background: #0d6efd;
-    color: #fff;
     border: none;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 14px;
     padding: 8px 14px;
     border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
     font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #007bff, #0056d2);
 }
 
 .dropdown:hover {
@@ -203,4 +210,116 @@ td {
 
 .client-requests-overview {
     margin: 2rem;
+}
+
+.approved {
+    color: #FFF;
+    background: #10B96A;
+}
+
+.modal-container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    min-width: 300px;
+    max-width: 600px;
+    border-radius: 8px;
+    padding: 7px 22px 15px 20px;
+    animation: fadeIn 0.3s ease-in-out;
+    background: linear-gradient(135deg, #fffefc, #f9f6f2);
+}
+
+.modal-header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-header h3 {
+    color: #333;
+    font-size: 1.2rem;
+    font-family: "Noto Sans Georgian", sans-serif;
+}
+
+.close-modal {
+    color: #333;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-body {
+    gap: 10px;
+    display: flex;
+    margin-top: 15px;
+    flex-direction: column;
+}
+
+#event-name,
+#event-email,
+#event-type,
+#event-date,
+#event-time,
+#event-guests,
+#event-venue,
+#event-status {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#event-status {
+    color: #c0392b;
+}
+
+.modal-footer {
+    gap: 10px;
+    display: flex;
+    margin-top: 14px;
+    align-items: center;
+}
+
+.approve {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+}
+
+.reject {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.approve:hover,
+.reject:hover {
+    opacity: 0.9;
+}
+
+.approve,
+.reject {
+    width: 100%;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }

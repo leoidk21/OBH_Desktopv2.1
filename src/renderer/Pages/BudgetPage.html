@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page</title>
+  <title>Budget Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body data-page="BudgetPage">
   <main class="container">
@@ -38,7 +39,7 @@
         <div class="budget-container">
           <h2 class="expenses-title">Expenses Breakdown</h2>
           <div class="table-container">
-          <table>
+          <table class="table">
             <thead>
               <tr>
                 <th>Category</th>
@@ -49,22 +50,22 @@
             </thead>
             <tbody>
               <tr>
-                <td>Venue</td>
+                <td>1. Venue</td>
                 <td>₱ 50,000</td>
-                <td><span class="reciept-paid">Pending</span></td>
+                <td><span class="status status-reciept-paid">Paid</span></td>
                 <td><span class="status view-receipt">View Receipt</span></td>
               </tr>
               <tr>
-                <td>Reception</td>
+                <td>2. Reception</td>
                 <td>₱ 20,000</td>
-                <td><span class="reciept-pending">Pending</span></td>
-                <td><span class="status send-reminder">Send Reminder</span></td>
+                <td><span class="status status-reciept-paid">Paid</span></td>
+                <td><span class="status view-receipt">View Receipt</span></td>
               </tr>
               <tr>
-                <td>Attire</td>
+                <td>3. Attire</td>
                 <td>₱ 40,000</td>
-                <td><span class="reciept-paid">Pending</span></td>
-                <td><span class="status view-receipt">View Receipt</span></td>
+                <td><span class="status status-reciept-pending">Pending</span></td>
+                <td><span class="status send-reminder">Send Reminder</span></td>
               </tr>
             </tbody>
           </table>
@@ -86,10 +87,10 @@
             </thead>
             <tbody>
               <tr>
-                <td>Grand Wedding</td>
+                <td>1. Grand Wedding</td>
                 <td>₱ 40,000</td>
                 <td>2025 - 06 - 20</td>
-                <td><span class="reciept-pending">Pending</span></td>
+                <td><span class="status status-reciept-paid">Paid</span></td>
                 <td><span class="status view-receipt">View Receipt</span></td>
               </tr>
             </tbody>
@@ -98,6 +99,38 @@
         </div>
       </div>
     </section>
+
+    <div class="payment-modal-container" id="payment-modal">
+      <div class="payment-modal-content">
+        <div class="payment-modal-header">
+          <span class="close-modal">&times;</span>
+          <h3>Proof of Payment</h3>
+        </div>
+        <div class="payment-modal-body">
+          <img src="../assets/bcdb9d87-f4dd-4360-9a2b-4373f69d2dc5.jpeg" alt="proof of payment" class="modal-image">
+        </div>
+
+        <div class="payment-modal-footer">
+          <button class="mark-paid close-modal">Mark as Paid</button>
+          <button class="decline-payment close-modal">Decline Payment</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="send-reminder-modal-container" id="send-reminder-modal">
+      <div class="send-reminder-content">
+
+        <div class="send-reminder-modal-body">
+          <img src="../assets/CHECK.png" alt="check">
+          <h3>Sent Succesfully!</h3>
+          <p>Your reminder has been sent</p>
+        </div>
+
+        <div class="send-reminder-modal-footer">
+          <button class="close-send-reminder">Okay</button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>
