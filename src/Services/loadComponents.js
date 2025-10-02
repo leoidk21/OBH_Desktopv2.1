@@ -176,13 +176,13 @@ function loadPageContent(pageName) {
       contentContainer.innerHTML = mainContent ? mainContent.innerHTML : html;
       document.title = page.title;
 
-      // ✅ Run profile loader kapag nasa AdminAccountPage
+      // Run profile loader kapag nasa AdminAccountPage
       if (pageName === "AdminAccountPage") {
-        console.log("👤 Initializing Admin Profile...");
+        console.log("Initializing Admin Profile...");
         if (typeof loadAdminProfile === "function") {
           loadAdminProfile();
         } else {
-          console.warn("⚠️ loadAdminProfile function not found");
+          console.warn("loadAdminProfile function not found");
         }
       }
     })

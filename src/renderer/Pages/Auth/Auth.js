@@ -231,5 +231,5 @@
       alert(message);
     }
 
-    window.location.href = "/renderer/Pages/Auth/LoginPage.html";
+    window.location.href = "Auth/LoginPage.html";
   }

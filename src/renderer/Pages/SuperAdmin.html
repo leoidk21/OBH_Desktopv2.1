@@ -42,33 +42,20 @@
           >
             <li><i class="fas fa-images"></i> Gallery</li>
           </a>
-          <a 
-            href="#" 
-            class="menu-item" 
-            data-tab="notifications"
-          >
-            <li><i class="fas fa-bell"></i> Notifications</li>
-          </a>
-          <a 
-            href="LandingPage.html" 
-            class="menu-item"
-          >
-            <li><i class="fas fa-chart-line"></i> Events Dashboard</li>
-          </a>
       </nav>
   
       <nav class="menu account-section">
         <h3 class="menu-text">Account</h3>
         <a 
-          href="#" 
-          class="menu-item" 
-          id="accountBtn"
-        >
-          <li><i class="fas fa-user-circle"></i> Account</li>
+            href="LandingPage.html" 
+            class="menu-item event"
+            id="dashboardLink"
+          >
+            <li><i class="fas fa-chart-line"></i> Events Dashboard</li>
         </a>
         <a 
           href="#" 
-          class="menu-item" 
+          class="menu-item logout" 
           id="logoutBtn"
         >
           <li><i class="fas fa-sign-out-alt"></i> Logout</li>
@@ -76,7 +63,7 @@
       </nav>
   
       <div class="user-info">
-        <img src="../assets/PROFILEPIC.png" alt="User" id="userAvatar">
+        <img src="../assets/admin-profile.png" alt="User" id="userAvatar">
         <div class="user-details">
           <p class="user-name" id="userName">Loading...</p>
           <p class="user-email" id="userEmail">Loading...</p>
@@ -89,7 +76,7 @@
       <header class="header">
         <h1 id="pageTitle">Admin Task Logs</h1>
           <div class="header-actions">
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="26" height="26" fill="url(#pattern0_2186_504)"/>
                 <defs>
                 <pattern id="pattern0_2186_504" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -133,11 +120,10 @@
             </select>
             <select id="filterPage">
               <option value="">All Pages</option>
+              <option value="Dashboard">Dashboard</option>
               <option value="Events">Events</option>
-              <option value="Gallery">Gallery</option>
-              <option value="Notifications">Notifications</option>
-              <option value="QR Code">QR Code</option>
-              <option value="Account">Account</option>
+              <option value="Schedule">Schedule</option>
+              <option value="Budget">Budget</option>
               <option value="Clients">Clients</option>
             </select>
             <input type="date" id="filterDateFrom" placeholder="From Date">
@@ -154,7 +140,6 @@
                 <th>Admin</th>
                 <th>Action</th>
                 <th>Page</th>
-                <th>IP Address</th>
                 <th>Details</th>
               </tr>
             </thead>
@@ -199,9 +184,20 @@
       <!--===== Tab: QR Code =====-->
       <div id="qrTab" class="tab-content">
         <div class="logs-container">
-          <h2>QR Code Management</h2>
-          <p>QR Code management interface goes here...</p>
-          <button onclick="window.location.href='QRPage.html'" class="btn-primary" style="padding: 10px 20px;">Go to QR Page</button>
+          <h1 class="tab-title">Generate QR Code for Mobile App Installation</h1>
+          <p class="tab-description">One time use QR code for mobile app installation</p>
+
+          <div class="qrCode">
+            <p class="qrCodeText" style="display: none;">Qr Code will be displayed here</p>
+            <svg width="270" height="271" viewBox="0 0 270 271" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 90.3333H90V0H0V90.3333ZM15 15.0556H75V75.2778H15V15.0556ZM30 30.1111H60V60.2222H30V30.1111ZM180 90.3333H270V0H180V90.3333ZM195 15.0556H255V75.2778H195V15.0556ZM210 30.1111H240V60.2222H210V30.1111ZM0 271H90V180.667H0V271ZM15 195.722H75V255.944H15V195.722ZM30 210.778H60V240.889H30V210.778ZM255 240.889H270V271H240V225.833H255V240.889ZM255 195.722H270V210.778H255V195.722ZM255 180.667V195.722H240V180.667H255ZM105 210.778H120V271H105V210.778ZM45 105.389V135.5H15V120.444H0V105.389H45ZM105 60.2222H120V75.2778H105V60.2222ZM150 15.0556V45.1667H135V0H165V15.0556H150ZM105 15.0556H120V30.1111H105V15.0556ZM255 135.5H270V165.611H240V150.556H255V135.5ZM240 105.389V120.444H210V150.556H180V135.5H195V105.389H240ZM135 165.611H120V150.556H105V135.5H135V165.611ZM225 195.722H240V210.778H225V195.722ZM255 120.444V135.5H240V120.444H255ZM120 165.611V180.667H105V165.611H120ZM210 240.889H225V271H195V240.889H210ZM165 240.889H180V255.944H165V271H135V255.944H150V240.889H165ZM165 225.833V210.778H195V225.833H165ZM165 150.556H180V195.722H165V210.778H150V225.833H135V195.722H120V180.667H165V165.611H150V150.556H165ZM30 150.556V165.611H15V150.556H30ZM210 210.778H195V195.722H210V210.778ZM225 180.667H195V165.611H225V180.667ZM75 105.389H90V120.444H75V135.5H90V165.611H75V150.556H60V165.611H45V135.5H60V105.389H75ZM120 105.389V75.2778H165V120.444H135V105.389H150V90.3333H135V105.389H120ZM120 45.1667H135V60.2222H120V45.1667ZM105 105.389H120V120.444H105V105.389ZM150 60.2222V45.1667H165V60.2222H150Z" fill="black"/>
+            </svg>
+          </div>
+
+          <div class="qrButton">
+            <button class="generate-btn">Generate QR Code</button>
+            <button class="download-btn">Download QR Code</button>
+          </div>
         </div>
       </div>
       <!--===== Stats Dashboard =====-->
@@ -209,23 +205,35 @@
       <!--===== Tab: Gallery =====-->
       <div id="galleryTab" class="tab-content">
         <div class="logs-container">
-          <h2>Gallery Management</h2>
-          <p>Gallery management interface goes here...</p>
-          <button onclick="window.location.href='GalleryPage.html'" class="btn-primary" style="padding: 10px 20px;">Go to Gallery</button>
-        </div>
-      </div>
-      <!--===== Stats Dashboard =====-->
-  
-      <!--===== Tab: Notifications =====-->
-      <div id="notificationsTab" class="tab-content">
-        <div class="logs-container">
-          <h2>Notification Management</h2>
-          <p>Notification management interface goes here...</p>
-          <button onclick="window.location.href='NotificationPage.html'" class="btn-primary" style="padding: 10px 20px;">Go to Notifications</button>
-        </div>
-      </div>
-      <!--===== Stats Dashboard =====-->
+          <section class="gallery-content">
+              <h1 classs="gallery-title">Manage and Share Event Memories</h1>
+                <p class="gallery-description">
+                  Upload photos and videos from the events—instantly sync them 
+                  to the mobile app for guests to relive the experience anytime.
+                </p>
 
+                <div class="upload-container">
+                  <!-- Upload box -->
+                  <label class="upload-box">
+                    <input type="file" id="fileInput" multiple accept="image/*,video/*">
+                    <div class="upload-icon"></div>
+                    <div class="upload-text">Upload</div>
+                    <small>Drag and drop or browse files</small>
+                  </label>
+
+                  <!-- Preview section -->
+                  <div class="preview-section">
+                    <div class="preview-header">No files selected</div>
+                    <div class="preview-list" id="previewList"></div>
+                    <div class="total-size" id="totalSize"></div>
+                    <input type="text" class="client-input" placeholder="Event or client name">
+                    <button class="send-btn">Send to client</button>
+                  </div>
+                </div>
+          </section>
+        </div>
+      </div>
+      <!--===== Stats Dashboard =====-->
     </main>
   </div>
   <script src="../Pages/script/SuperAdmin.js"></script>

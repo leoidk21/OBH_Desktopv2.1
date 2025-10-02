@@ -22,7 +22,7 @@
 
 .send-reminder {
     color: #FFF;
-    background: linear-gradient(90deg, #06b6d4, #3b82f6);
+    background: linear-gradient(135deg, #007bff, #0056d2);
 }
 
 .send-reminder:hover {
@@ -31,37 +31,23 @@
 
 .view-receipt {
     color: #FFF;
-    background: linear-gradient(135deg, #007bff, #0056d2);
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
 .view-receipt:hover {
     opacity: 0.9;
 }
 
-.reciept-pending {
-    color: #f05454;
-    font-weight: 600;
-}
-
-.reciept-paid {
-    color: #10B96A;
-}
-
-.status-paid {
-    color: #16a34a; 
-    background: #dcfce7; 
-}
-
 .status-reciept-pending {
-    color: #FFF;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #c2185b;
+    background: #fce4ec; 
 }
 
 .status-reciept-paid {
     width: 60px;
-    color: #15803D;
+    color: #155724; 
     text-align: center;
-    background: #cdf8dc; 
+    background-color: #d4edda; 
 }
 
 .modal-image {

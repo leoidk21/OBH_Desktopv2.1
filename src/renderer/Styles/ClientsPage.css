@@ -51,14 +51,14 @@ th {
 
 th, td {
     text-align: left;
-    padding: 15px 16px;
+    padding: 16px 16px;
     border-bottom: 1px solid #eee;
     font-family: 'Poppins', sans-serif;
 }
 
 th {
-    font-weight: 600;
     color: #444;
+    font-weight: 600;
 }
 
 td {

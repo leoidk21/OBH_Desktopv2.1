@@ -55,17 +55,17 @@
 
 .guest-status-going {
     width: 60px;
-    color: #FFF;
     text-align: center;
-    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: #155724; 
+    background-color: #d4edda; 
 }
 
 .guest-status-pending {
-    color: #fff;
-    background: linear-gradient(135deg, #ffa726, #fb8c00);
+    color: #c2185b;
+    background: #fce4ec; 
 }
 
 .guest-status-declined {
-    color: #FFF;
-    background: linear-gradient(135deg, #b33939, #7b1f1f);
+    color: #991b1b;
+    background: #fdc7c7;
 }
